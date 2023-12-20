@@ -109,9 +109,9 @@ class DarEnAdopcionActivity : AppCompatActivity() {
             ///llamamos a pickmedia
             pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
 
-            val llamada: Call<Perro> = miApi.obtenerPerros()
+            /*val llamada: Call<Perro> = miApi.obtenerPerros()
 
-// Ejecutar la llamada de manera asíncrona
+            // Ejecutar la llamada de manera asíncrona
             llamada.enqueue(object : Callback<Perro> {
                 override fun onResponse(call: Call<Perro>, response: Response<Perro>) {
                     if (response.isSuccessful) {
@@ -129,7 +129,7 @@ class DarEnAdopcionActivity : AppCompatActivity() {
                     }
             })
 
-
+             */
         }
 
     }
