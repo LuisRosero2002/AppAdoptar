@@ -12,22 +12,13 @@ import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.example.appfirebaselogin.Data.modelos.RetrofitService
-import com.example.appfirebaselogin.Data.modelos.VerificarIngresoUsuario
-import com.example.appfirebaselogin.Data.modelos.login
 import com.example.appfirebaselogin.databinding.ActivityLoginBinding
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.FirebaseDatabase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import okhttp3.Response
-import retrofit2.Callback
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
-import retrofit2.create
-import kotlin.math.log
 
 
 class LoginActivity : AppCompatActivity() {
