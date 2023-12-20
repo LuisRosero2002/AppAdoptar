@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name" translatable="false">APP FIREBASE LOGIN</string>
+    <string name="e_mail">E-Mail</string>
+    <string name="password">Password</string>
+    <string name="ingresar">ingresar</string>
+    <string name="correo">Correo</string>
+    <string name="repetir_password">Repeir Password</string>
+    <string name="registrarse">Registrarse</string>
+    <string name="confirmar_password">Confirmar_password</string>
+    <string name="registrate">Registrate</string>
+    <string name="bienvenido">Bienvenido</string>
+    <string name="formulario_de_registro_de_mascotas">Formulario De Registro De Mascotas</string>
+    <string name="a_adir_imagen">Añadir Imagen</string>
+    <string name="nombre_mascota">Nombre Mascota</string>
+    <string name="raza">Raza</string>
+    <string name="sexo">Sexo</string>
+    <string name="edad">Edad</string>
+    <string name="tama_o">Tamaño</string>
+    <string name="esterilizado">Esterilizado</string>
+    <string name="fecha_ingreso">Fecha Ingreso</string>
+    <string name="formulario_registro_de_mascota">Formulario Registro De Mascota</string>
+    <string name="guardar">Guardar</string>
+    <string name="descripci_n">Descripciòn</string>
+    <string name="ingrese_una_descripci_n">Ingrese una Descripciòn</string>
+    <string name="tap_fecha">Tap Fecha</string>
+    <string name="no">No</string>
+    <string name="s">Sí</string>
+    <string name="ingrese_tama_o">Ingrese Tamaño</string>
+    <string name="_2_a_os">2 Años</string>
+    <string name="ingrese_sexo">Ingrese Sexo</string>
+    <string name="ingrese_raza">Ingrese Raza</string>
+    <string name="name">Name</string>
+    <string name="dar_en_adopci_n">DAR EN ADOPCIÓN</string>
+    <string name="adoptar">ADOPTAR</string>
+</resources>

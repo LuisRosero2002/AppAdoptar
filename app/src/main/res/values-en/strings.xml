@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name" translatable="false">APP FIREBASE LOGIN</string>
+    <string name="e_mail">E-Mail</string>
+    <string name="password">Password</string>
+    <string name="ingresar">enter</string>
+    <string name="correo">Email</string>
+    <string name="repetir_password">repeat password</string>
+    <string name="registrarse">Register</string>
+    <string name="confirmar_password">Confirm password</string>
+    <string name="registrate">Register</string>
+    <string name="bienvenido">Welcome</string>
+    <string name="formulario_de_registro_de_mascotas">Pet Registration Form</string>
+    <string name="a_adir_imagen">Add Image</string>
+    <string name="nombre_mascota">Pet Name</string>
+    <string name="raza">Race</string>
+    <string name="sexo">Sex</string>
+    <string name="edad">Age</string>
+    <string name="tama_o">Size</string>
+    <string name="esterilizado">Sterilized</string>
+    <string name="fecha_ingreso">Entry Date</string>
+    <string name="formulario_registro_de_mascota">Pet Registration Form</string>
+    <string name="guardar">Save</string>
+    <string name="descripci_n">Description</string>
+    <string name="ingrese_una_descripci_n">Enter a Description</string>
+    <string name="tap_fecha">Tap Date</string>
+    <string name="no">No</string>
+    <string name="s">Yes</string>
+    <string name="ingrese_tama_o">Enter Size</string>
+    <string name="_2_a_os">2 Years</string>
+    <string name="ingrese_sexo">Enter Sex</string>
+    <string name="ingrese_raza">Enter Race</string>
+    <string name="name">Name</string>
+</resources>

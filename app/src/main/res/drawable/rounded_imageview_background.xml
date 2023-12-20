@@ -1,0 +1,6 @@
+<!-- rounded_imageview_background.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <corners android:radius="30dp" /> <!-- Ajusta el radio según sea necesario -->
+    <solid android:color="#FFFFFF" /> <!-- Puedes cambiar el color del fondo si lo deseas -->
+    <stroke android:color="#CCCCCC" android:width="2dp" /> <!-- Puedes agregar un borde si lo deseas -->
+</shape>
