@@ -17,8 +17,8 @@ interface RetrofitService {
         @Query("password") password: String
     ): VerificarIngresoUsuario
 
-    @POST("Usuario/GetUsuario")
+    @POST("Usuario/PostUsuario")
     suspend fun registrase(
         @Body requestBody:Usuario
-    ): ResponseBodyRegister
+    ): Usuario
 }

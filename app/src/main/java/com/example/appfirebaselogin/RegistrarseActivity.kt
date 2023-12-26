@@ -91,7 +91,7 @@ class RegistrarseActivity : AppCompatActivity() {
 
                         runOnUiThread() {
 
-                            Log.i("idUSer",call.id_usuario)
+                            Log.i("idUSer",call.id)
                             Log.i("User",call.username)
                             Log.i("Pass",call.password)
 
