@@ -31,4 +31,5 @@
     <string name="ingrese_sexo">Enter Sex</string>
     <string name="ingrese_raza">Enter Race</string>
     <string name="name">Name</string>
+    <string name="esta_esterilizado">Esta esterilizado?</string>
 </resources>

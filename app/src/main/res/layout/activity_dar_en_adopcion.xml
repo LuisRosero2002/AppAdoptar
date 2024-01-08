@@ -4,11 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/backlogin"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:context=".DarEnAdopcionActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <Button
             android:id="@+id/btnAtras"
@@ -17,7 +18,7 @@
             android:background="#00FFFFFF"
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
-            android:drawableLeft="@drawable/baseline_arrow_back_ios_24"
+            android:drawableStart="@drawable/baseline_arrow_back_ios_24"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
         <TextView
@@ -37,12 +38,13 @@
 
         <ImageView
             android:id="@+id/imagAnimal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="200dp"
+            android:layout_height="220dp"
             android:layout_marginVertical="30dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtTitulo" />
+            app:layout_constraintTop_toBottomOf="@+id/txtTitulo"
+            app:srcCompat="@drawable/lobo"/>
 
         <Button
             android:id="@+id/btnImagen"
@@ -98,6 +100,20 @@
             app:layout_constraintTop_toBottomOf="@+id/txtraza" />
 
         <EditText
+            android:id="@+id/txtpeso"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/shape"
+            android:hint="Peso"
+            android:inputType="number"
+            android:padding="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtsexo" />
+
+        <EditText
             android:id="@+id/txtedad"
             android:layout_width="match_parent"
             android:layout_height="48dp"
@@ -109,7 +125,7 @@
             android:padding="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtsexo" />
+            app:layout_constraintTop_toBottomOf="@+id/txtpeso" />
 
         <AutoCompleteTextView
             android:id="@+id/txtTamano"
@@ -148,7 +164,7 @@
             android:background="@drawable/shape"
             android:gravity="top"
             android:hint="Descripccion de la mascota"
-            android:inputType="date"
+            android:inputType="text"
             android:padding="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -167,8 +183,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Esta esterilizado?"
-                android:textSize="15dp"
+                android:text="@string/esta_esterilizado"
+                android:textSize="15sp"
                 android:textColor="@color/black" />
 
             <RadioGroup

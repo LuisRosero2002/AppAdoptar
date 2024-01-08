@@ -17,14 +17,14 @@ class PrincipalActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_principal)
 
-        val Btn1 = findViewById<Button>(R.id.Btn1)//dar en adopcion
-        val Btn2 = findViewById<Button>(R.id.Btn2)//adoptar
+        val adopcion = findViewById<Button>(R.id.Btn1)//dar en adopcion
+        val adoptar = findViewById<Button>(R.id.Btn2)//adoptar
 
-        Btn1.setOnClickListener(){
+        adopcion.setOnClickListener(){
             val intent = Intent(this, DarEnAdopcionActivity::class.java)
             startActivity(intent)
         }
-        Btn2.setOnClickListener(){
+        adoptar.setOnClickListener(){
             val intent = Intent(this, AdoptarActivity::class.java)
             startActivity(intent)
         }
