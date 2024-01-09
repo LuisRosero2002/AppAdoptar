@@ -40,26 +40,6 @@ import java.util.Locale
 
 class DarEnAdopcionActivity : AppCompatActivity() {
 
-    val pickMedia = registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
-        //obtener imagen desde el dispositivo
-        if (uri != null) {
-            imagen.setImageURI(uri)
-            file = File(uri.path)
-        } else {
-            val builder = AlertDialog.Builder(this)
-            builder.setTitle("Error! al cargar la imagen")
-            builder.setMessage("Por favor, Intenta de nuevo")
-            builder.setIcon(R.drawable.cancelar)
-            builder.setPositiveButton("Aceptar") { dialog: DialogInterface, _ ->
-                dialog.dismiss() // Cierra el diálogo cuando se hace clic en el botón "Aceptar"
-            }
-
-            val dialog = builder.create()
-            dialog.show()
-        }
-
-    }
-
     lateinit var btnImage: Button
     lateinit var imagen: ImageView
     private var razaSeleccionada: String = ""
@@ -78,116 +58,105 @@ class DarEnAdopcionActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dar_en_adopcion)
 
-        val name = (findViewById<EditText>(R.id.txtname)).text.toString()
-        val autoCompleteTextView = findViewById<AutoCompleteTextView>(R.id.txtraza)
-        val sexo = findViewById<AutoCompleteTextView>(R.id.txtsexo)
-        val edad = (findViewById<EditText>(R.id.txtedad)).text.toString()
-        val txtpeso = findViewById<EditText>(R.id.txtpeso)
-        val pesoString = txtpeso.text.toString()
-        val tamano = findViewById<AutoCompleteTextView>(R.id.txtTamano)
-        val radioGroup = findViewById<RadioGroup>(R.id.radioGroup)
-        txtDate = (findViewById(R.id.txtDate))
-        val descripcion = (findViewById<EditText>(R.id.txtdescripcion)).text.toString()
-        ///////obtener id del bton para la imagen y el id de el imageview
-        btnImage = findViewById(R.id.btnImagen)
-        imagen = findViewById(R.id.imagAnimal)
+
         //boton enviar
         val btnEnviar = findViewById<Button>(R.id.btnguardar)
 
-        ////obtener el valor del radio buton selecionado
-
-        // Obtener el ID del RadioButton seleccionado en el RadioGroup
-        val radioButtonId = radioGroup.checkedRadioButtonId
-
-        // Verificar si se seleccionó un RadioButton
-        if (radioButtonId != -1) {
-            // Obtener el RadioButton seleccionado
-            val radioButton = findViewById<RadioButton>(radioButtonId)
-
-            // Obtener el texto del RadioButton seleccionado
-            esterilizado = radioButton.text.toString()
-
-            // Ahora puedes hacer algo con el valor de "esterilizado"
-            println("Esterilizado: $esterilizado")
-        } else {
-            // Manejar el caso en que no se seleccionó ningún RadioButton
-            println("Ningún RadioButton seleccionado")
-        }
 
 
-        // obtener opciones para el AutoCompleteTextView con los datos del array
-        val opcionesRaza = obtenerOpcionesRaza()
-        // Crear un adaptador para las opciones
-        val adaptador =
-            ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, opcionesRaza)
+
+//
+        btnEnviar.setOnClickListener {
+            val txtname = findViewById<EditText>(R.id.txtname)
+            val name = txtname.text.toString()
+            val autoCompleteTextView = findViewById<AutoCompleteTextView>(R.id.txtraza)
+            val sexo = findViewById<AutoCompleteTextView>(R.id.txtsexo)
+            val txtedad = findViewById<EditText>(R.id.txtedad)
+            val edad = txtedad.text.toString()
+            val txtpeso = findViewById<EditText>(R.id.txtpeso)
+            val pesoString = txtpeso.text.toString()
+            val tamano = findViewById<AutoCompleteTextView>(R.id.txtTamano)
+            val radioGroup = findViewById<RadioGroup>(R.id.radioGroup)
+            txtDate = (findViewById(R.id.txtDate))
+            val txtdescripcion = findViewById<EditText>(R.id.txtdescripcion)
+            val descripcion = txtdescripcion.text.toString()
+            ///////obtener id del bton para la imagen y el id de el imageview
+            btnImage = findViewById(R.id.btnImagen)
+            imagen = findViewById(R.id.imagAnimal)
+
+            btnImage.setOnClickListener {
+                ///llamamos a pickmedia
+                pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
+            }
+
+            ////obtener el valor del radio buton selecionado
+            val radioButtonId = radioGroup.checkedRadioButtonId
+
+            if (radioButtonId != -1) {
+                val radioButton = findViewById<RadioButton>(radioButtonId)
+                esterilizado = radioButton.text.toString()
+            } else {
+                println("Ningún RadioButton seleccionado")
+            }
+
+
+            // obtener opciones para el AutoCompleteTextView con los datos del array
+            val opcionesRaza = obtenerOpcionesRaza()
+            // Crear un adaptador para las opciones
+            val adaptador =
+                ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, opcionesRaza)
 
 // Configurar el AutoCompleteTextView con el adaptador para opciones de mascota
-        autoCompleteTextView.setAdapter(adaptador)
+            autoCompleteTextView.setAdapter(adaptador)
 
 // Manejar la selección de elementos en el AutoCompleteTextView
-        autoCompleteTextView.setOnItemClickListener { _, _, position, _ ->
-            // Obtener el valor seleccionado del adaptador
-            razaSeleccionada = adaptador.getItem(position).toString()
+            autoCompleteTextView.setOnItemClickListener { _, _, position, _ ->
+                // Obtener el valor seleccionado del adaptador
+                razaSeleccionada = adaptador.getItem(position).toString()
+            }
 
-            // Ahora puedes hacer algo con la raza seleccionada
-            // Por ejemplo, imprimirlo
-            println("Raza seleccionada: $razaSeleccionada")
-        }
+            //////////////////////////////////////////opciones para sexo
+            // Definir opciones para el AutoCompleteTextView
+            val opcion = arrayOf("Hembra", "Macho")
 
-        //////////////////////////////////////////opciones para sexo
-        // Definir opciones para el AutoCompleteTextView
-        val opcion = arrayOf("Hembra", "Macho")
+            // Crear un adaptador para las opciones
+            val adap = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, opcion)
 
-        // Crear un adaptador para las opciones
-        val adap = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, opcion)
+            // Configurar el AutoCompleteTextView con el adaptador
+            sexo.setAdapter(adap)
+            // Manejar la selección de elementos en el AutoCompleteTextView
+            sexo.setOnItemClickListener { _, _, position, _ ->
+                // Obtener el valor seleccionado del adaptador
+                sexoSeleccionado = adap.getItem(position).toString()
 
-        // Configurar el AutoCompleteTextView con el adaptador
-        sexo.setAdapter(adap)
-        // Manejar la selección de elementos en el AutoCompleteTextView
-        sexo.setOnItemClickListener { _, _, position, _ ->
-            // Obtener el valor seleccionado del adaptador
-            sexoSeleccionado = adap.getItem(position).toString()
+            }
 
-            // Ahora puedes hacer algo con la raza seleccionada
-            // Por ejemplo, imprimirlo
-            println("Raza seleccionada: $sexoSeleccionado")
-        }
+            /////////////////////////////////////OPCIONES TAMAÑO
+            // Definir opciones para el AutoCompleteTextView
+            val opc = arrayOf("Grande", "Mediano", "Pequeño")
 
-        /////////////////////////////////////OPCIONES TAMAÑO
-        // Definir opciones para el AutoCompleteTextView
-        val opc = arrayOf("Grande", "Mediano", "Pequeño")
+            // Crear un adaptador para las opciones
+            val Mostrar = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, opc)
 
-        // Crear un adaptador para las opciones
-        val Mostrar = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, opc)
+            // Configurar el AutoCompleteTextView con el adaptador
+            tamano.setAdapter(Mostrar)
 
-        // Configurar el AutoCompleteTextView con el adaptador
-        tamano.setAdapter(Mostrar)
+            // Manejar la selección de elementos en el AutoCompleteTextView
+            tamano.setOnItemClickListener { _, _, position, _ ->
+                // Obtener el valor seleccionado del adaptador
+                tamanoSeleccionado = Mostrar.getItem(position).toString()
 
-        // Manejar la selección de elementos en el AutoCompleteTextView
-        tamano.setOnItemClickListener { _, _, position, _ ->
-            // Obtener el valor seleccionado del adaptador
-            tamanoSeleccionado = Mostrar.getItem(position).toString()
-
-            // Ahora puedes hacer algo con la raza seleccionada
-            // Por ejemplo, imprimirlo
-            println("Raza seleccionada: $tamanoSeleccionado")
-        }
+            }
 
 
-        // Mostrar el DatePickerDialog cuando se hace clic en el EditText
-        txtDate.setOnClickListener {
-            showDatePickerDialog()
-        }
+            // Mostrar el DatePickerDialog cuando se hace clic en el EditText
+            txtDate.setOnClickListener {
+                showDatePickerDialog()
+            }
 
-        btnImage.setOnClickListener {
-            ///llamamos a pickmedia
-            pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
-        }
-
-        btnEnviar.setOnClickListener {
-            if (name.isNotEmpty() && razaSeleccionada.isNotEmpty() && tamanoSeleccionado.isNotEmpty() && sexoSeleccionado.isNotEmpty()
-                && edad.isNotEmpty() && descripcion.isNotEmpty() && esterilizado.isNotEmpty() && pesoString.isNotEmpty() && date.isNotEmpty()) {
-
+           /* if (name.isNotEmpty() && razaSeleccionada.isNotEmpty() && tamanoSeleccionado.isNotEmpty() && sexoSeleccionado.isNotEmpty()
+                && edad.isNotEmpty() && descripcion.isNotEmpty() && esterilizado.isNotEmpty() && pesoString.isNotEmpty() && date.isNotEmpty()) {*/
+            if (name.isNotEmpty()){
                 peso = pesoString.toDouble()
 
                 val dateFormat = "dd/MM/yyyy"
@@ -240,8 +209,8 @@ class DarEnAdopcionActivity : AppCompatActivity() {
                                 if (perroResponse != null) {
                                     // Operaciones con el cuerpo de la respuesta
                                     Log.i("idUSer", perroResponse.id.toString())
-                                    Log.i("User", perroResponse.raza)
                                     Log.i("Pass", perroResponse.nombre)
+                                    Log.i("User", perroResponse.peso.toString())
 
                                     // Mostrar un AlertDialog si algún error ocurrio
                                     val builder = AlertDialog.Builder(this@DarEnAdopcionActivity)
@@ -362,6 +331,26 @@ class DarEnAdopcionActivity : AppCompatActivity() {
         fun createService(): RetrofitService {
             return retrofit.create(RetrofitService::class.java)
         }
+    }
+
+    val pickMedia = registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
+        //obtener imagen desde el dispositivo
+        if (uri != null) {
+            imagen.setImageURI(uri)
+            file = File(uri.path)
+        } else {
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("Error! al cargar la imagen")
+            builder.setMessage("Por favor, Intenta de nuevo")
+            builder.setIcon(R.drawable.cancelar)
+            builder.setPositiveButton("Aceptar") { dialog: DialogInterface, _ ->
+                dialog.dismiss() // Cierra el diálogo cuando se hace clic en el botón "Aceptar"
+            }
+
+            val dialog = builder.create()
+            dialog.show()
+        }
+
     }
 
     private fun obtenerOpcionesRaza(): Array<String> {

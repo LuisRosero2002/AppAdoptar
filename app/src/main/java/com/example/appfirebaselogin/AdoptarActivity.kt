@@ -12,7 +12,6 @@ class AdoptarActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_adoptar)
 
-        val Rview = findViewById<RecyclerView>(R.id.RV)
 
 
     }

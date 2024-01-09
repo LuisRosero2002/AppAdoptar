@@ -18,7 +18,7 @@
             android:background="#00FFFFFF"
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
-            android:drawableStart="@drawable/baseline_arrow_back_ios_24"
+            android:drawableLeft="@drawable/baseline_arrow_back_ios_24"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
         <TextView
@@ -53,6 +53,7 @@
             android:gravity="center"
             android:text="@string/a_adir_imagen"
             android:backgroundTint="@color/buttons"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imagAnimal" />
@@ -218,6 +219,7 @@
             android:layout_weight="1"
             android:text="@string/guardar"
             android:backgroundTint="@color/buttons"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lnlRadio"
