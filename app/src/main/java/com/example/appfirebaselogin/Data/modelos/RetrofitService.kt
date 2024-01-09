@@ -24,8 +24,9 @@ interface RetrofitService {
     @Multipart
     @POST("Perro/PostPerro")
     suspend fun registrarPerro(
-        @Part("perro") perro: MultipartBody.Part,
-        @Part file: MultipartBody.Part
+        @Part("perro") perro: Perro,
+        @Part image: MultipartBody.Part
     ): Response<Perro>
+
 
 }

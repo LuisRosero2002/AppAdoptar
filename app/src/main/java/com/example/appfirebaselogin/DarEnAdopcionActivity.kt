@@ -30,11 +30,9 @@ import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.converter.scalars.ScalarsConverterFactory
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Calendar
-import java.util.Date
 import java.util.Locale
 
 
@@ -65,29 +63,83 @@ class DarEnAdopcionActivity : AppCompatActivity() {
 
 
 
-//
+        val txtname = findViewById<EditText>(R.id.txtname)
+        val txtedad = findViewById<EditText>(R.id.txtedad)
+        val autoCompleteTextView = findViewById<AutoCompleteTextView>(R.id.txtraza)
+        val sexo = findViewById<AutoCompleteTextView>(R.id.txtsexo)
+        val tamano = findViewById<AutoCompleteTextView>(R.id.txtTamano)
+        val txtpeso = findViewById<EditText>(R.id.txtpeso)
+        val radioGroup = findViewById<RadioGroup>(R.id.radioGroup)
+        txtDate = (findViewById(R.id.txtDate))
+        val txtdescripcion = findViewById<EditText>(R.id.txtdescripcion)
+
+        btnImage = findViewById(R.id.btnImagen)
+        imagen = findViewById(R.id.imagAnimal)
+        btnImage.setOnClickListener {
+            ///llamamos a pickmedia
+            pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
+        }
+        // obtener opciones para el AutoCompleteTextView con los datos del array
+        val opcionesRaza = obtenerOpcionesRaza()
+        // Crear un adaptador para las opciones
+        val adaptador =
+            ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, opcionesRaza)
+
+// Configurar el AutoCompleteTextView con el adaptador para opciones de mascota
+        autoCompleteTextView.setAdapter(adaptador)
+
+// Manejar la selección de elementos en el AutoCompleteTextView
+        autoCompleteTextView.setOnItemClickListener { _, _, position, _ ->
+            // Obtener el valor seleccionado del adaptador
+            razaSeleccionada = adaptador.getItem(position).toString()
+        }
+
+        //////////////////////////////////////////opciones para sexo
+        // Definir opciones para el AutoCompleteTextView
+        val opcion = arrayOf("Hembra", "Macho")
+
+        // Crear un adaptador para las opciones
+        val adap = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, opcion)
+
+        // Configurar el AutoCompleteTextView con el adaptador
+        sexo.setAdapter(adap)
+        // Manejar la selección de elementos en el AutoCompleteTextView
+        sexo.setOnItemClickListener { _, _, position, _ ->
+            // Obtener el valor seleccionado del adaptador
+            sexoSeleccionado = adap.getItem(position).toString()
+
+        }
+
+        /////////////////////////////////////OPCIONES TAMAÑO
+        // Definir opciones para el AutoCompleteTextView
+        val opc = arrayOf("Grande", "Mediano", "Pequeño")
+
+        // Crear un adaptador para las opciones
+        val Mostrar = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, opc)
+
+        // Configurar el AutoCompleteTextView con el adaptador
+        tamano.setAdapter(Mostrar)
+
+        // Manejar la selección de elementos en el AutoCompleteTextView
+        tamano.setOnItemClickListener { _, _, position, _ ->
+            // Obtener el valor seleccionado del adaptador
+            tamanoSeleccionado = Mostrar.getItem(position).toString()
+
+        }
+
+
+        // Mostrar el DatePickerDialog cuando se hace clic en el EditText
+        txtDate.setOnClickListener {
+            showDatePickerDialog()
+        }
+
         btnEnviar.setOnClickListener {
-            val txtname = findViewById<EditText>(R.id.txtname)
+
             val name = txtname.text.toString()
-            val autoCompleteTextView = findViewById<AutoCompleteTextView>(R.id.txtraza)
-            val sexo = findViewById<AutoCompleteTextView>(R.id.txtsexo)
-            val txtedad = findViewById<EditText>(R.id.txtedad)
             val edad = txtedad.text.toString()
-            val txtpeso = findViewById<EditText>(R.id.txtpeso)
             val pesoString = txtpeso.text.toString()
-            val tamano = findViewById<AutoCompleteTextView>(R.id.txtTamano)
-            val radioGroup = findViewById<RadioGroup>(R.id.radioGroup)
-            txtDate = (findViewById(R.id.txtDate))
-            val txtdescripcion = findViewById<EditText>(R.id.txtdescripcion)
             val descripcion = txtdescripcion.text.toString()
             ///////obtener id del bton para la imagen y el id de el imageview
-            btnImage = findViewById(R.id.btnImagen)
-            imagen = findViewById(R.id.imagAnimal)
-
-            btnImage.setOnClickListener {
-                ///llamamos a pickmedia
-                pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
-            }
 
             ////obtener el valor del radio buton selecionado
             val radioButtonId = radioGroup.checkedRadioButtonId
@@ -100,73 +152,20 @@ class DarEnAdopcionActivity : AppCompatActivity() {
             }
 
 
-            // obtener opciones para el AutoCompleteTextView con los datos del array
-            val opcionesRaza = obtenerOpcionesRaza()
-            // Crear un adaptador para las opciones
-            val adaptador =
-                ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, opcionesRaza)
-
-// Configurar el AutoCompleteTextView con el adaptador para opciones de mascota
-            autoCompleteTextView.setAdapter(adaptador)
-
-// Manejar la selección de elementos en el AutoCompleteTextView
-            autoCompleteTextView.setOnItemClickListener { _, _, position, _ ->
-                // Obtener el valor seleccionado del adaptador
-                razaSeleccionada = adaptador.getItem(position).toString()
-            }
-
-            //////////////////////////////////////////opciones para sexo
-            // Definir opciones para el AutoCompleteTextView
-            val opcion = arrayOf("Hembra", "Macho")
-
-            // Crear un adaptador para las opciones
-            val adap = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, opcion)
-
-            // Configurar el AutoCompleteTextView con el adaptador
-            sexo.setAdapter(adap)
-            // Manejar la selección de elementos en el AutoCompleteTextView
-            sexo.setOnItemClickListener { _, _, position, _ ->
-                // Obtener el valor seleccionado del adaptador
-                sexoSeleccionado = adap.getItem(position).toString()
-
-            }
-
-            /////////////////////////////////////OPCIONES TAMAÑO
-            // Definir opciones para el AutoCompleteTextView
-            val opc = arrayOf("Grande", "Mediano", "Pequeño")
-
-            // Crear un adaptador para las opciones
-            val Mostrar = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, opc)
-
-            // Configurar el AutoCompleteTextView con el adaptador
-            tamano.setAdapter(Mostrar)
-
-            // Manejar la selección de elementos en el AutoCompleteTextView
-            tamano.setOnItemClickListener { _, _, position, _ ->
-                // Obtener el valor seleccionado del adaptador
-                tamanoSeleccionado = Mostrar.getItem(position).toString()
-
-            }
-
-
-            // Mostrar el DatePickerDialog cuando se hace clic en el EditText
-            txtDate.setOnClickListener {
-                showDatePickerDialog()
-            }
-
            /* if (name.isNotEmpty() && razaSeleccionada.isNotEmpty() && tamanoSeleccionado.isNotEmpty() && sexoSeleccionado.isNotEmpty()
                 && edad.isNotEmpty() && descripcion.isNotEmpty() && esterilizado.isNotEmpty() && pesoString.isNotEmpty() && date.isNotEmpty()) {*/
             if (name.isNotEmpty()){
                 peso = pesoString.toDouble()
 
-                val dateFormat = "dd/MM/yyyy"
-                val simpleDateFormat = SimpleDateFormat(dateFormat, Locale.getDefault())
-                val fecha: Date? = simpleDateFormat.parse(date)
+                //val dateFormat = "dd/MM/yyyy"
+                //val simpleDateFormat = SimpleDateFormat(dateFormat, Locale.getDefault())
+                //val fecha: Date? = simpleDateFormat.parse(date)
 
 
                 // Convertir objeto Perro a JSON y convertirlo a RequestBody
                 val gson = Gson()
-                val perroJson = gson.toJson(
+                //val perroJson = gson.toJson(
+                val perro =
                     Perro(
                         id = 0,
                         raza = razaSeleccionada,
@@ -177,14 +176,14 @@ class DarEnAdopcionActivity : AppCompatActivity() {
                         idgenero = 1,
                         descripcion = descripcion,
                         estaesterilizado = true,
-                        fecharegistro = fecha,
+                        fecharegistro = null,
                         image = ""
                     )
-                )
+               // )
                 /// Crear parte (part) del objeto Perro para la solicitud multipart
-                val perroRequestBody =
-                    RequestBody.create(MediaType.parse("application/json"), perroJson)
-                val perroPart = MultipartBody.Part.createFormData("perro", null, perroRequestBody)
+                //val perroRequestBody =
+                   // RequestBody.create(MediaType.parse("application/json"), perroJson)
+                //val perroPart = MultipartBody.Part.createFormData("perro", null, perroRequestBody)
 
                 // Crear parte (part) de la imagen para la solicitud multipart
                 val requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file)
@@ -197,7 +196,7 @@ class DarEnAdopcionActivity : AppCompatActivity() {
                         // Hacer la llamada a la API usando Retrofit
 
                         val response =
-                            RetrofitClient.createService().registrarPerro(perroPart, body)
+                            RetrofitClient.createService().registrarPerro(perro, body)
 
                         withContext(Dispatchers.Main) {
                             // Verificar el código de respuesta
@@ -239,7 +238,7 @@ class DarEnAdopcionActivity : AppCompatActivity() {
                             } else {
                                 // Mostrar un AlertDialog si algún error ocurrio
                                 val builder = AlertDialog.Builder(this@DarEnAdopcionActivity)
-                                builder.setTitle("Error")
+                                builder.setTitle("Error Al Registrar La Mascota")
                                 builder.setMessage("Por favor intenta de nuevo")
                                 builder.setIcon(R.drawable.cancelar)
                                 builder.setPositiveButton("Aceptar") { dialog: DialogInterface, _ ->
