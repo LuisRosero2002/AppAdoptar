@@ -27,7 +27,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/adopta2sf" />
+        app:srcCompat="@drawable/usuario" />
     <TextView
         android:id="@+id/txtRegister"
         android:layout_width="wrap_content"
@@ -117,6 +117,7 @@
         android:layout_height="60dp"
         android:layout_marginTop="40dp"
         android:backgroundTint="@color/buttons"
+        android:textColor="@color/white"
         android:text="REGISTRARSE"
         app:cornerRadius="?attr/listPreferredItemPaddingEnd"
         app:layout_constraintEnd_toEndOf="parent"

@@ -17,10 +17,10 @@ data class Perro(
     val nombre:String,
 
     @SerializedName("peso")
-    val peso:BigDecimal,
+    val peso:Double,
 
     @SerializedName("tamanio")
-    val tamanio:BigDecimal,
+    val tamanio:Double,
 
     @SerializedName("edad")
     val edad:String,
@@ -32,7 +32,13 @@ data class Perro(
     @SerializedName("descripcion")
     val descripcion:String,
 
+    @SerializedName("estaesterilizado")
+    val estaesterilizado:Boolean,
 
-    @SerializedName("fecha")
-    val fecha:Date?
+
+    @SerializedName("fecharegistro")
+    val fecharegistro:Date?,
+
+    @SerializedName("image")
+    val image:String
 )

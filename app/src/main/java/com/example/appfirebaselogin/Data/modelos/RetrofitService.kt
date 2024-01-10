@@ -1,14 +1,13 @@
 package com.example.appfirebaselogin.Data.modelos
 
-import okhttp3.RequestBody
-import okhttp3.Response
-import retrofit2.Call
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import okhttp3.MultipartBody
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Query
+import retrofit2.Response
+import retrofit2.http.Multipart
+import retrofit2.http.Part
 
 interface RetrofitService {
     @GET("Usuario/GetUsuario")
@@ -21,4 +20,13 @@ interface RetrofitService {
     suspend fun registrase(
         @Body requestBody:Usuario
     ): Usuario
+
+    @Multipart
+    @POST("Perro/PostPerro")
+    suspend fun registrarPerro(
+        @Part("perro") perro: Perro,
+        @Part image: MultipartBody.Part
+    ): Response<Perro>
+
+
 }

@@ -3,12 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:background="@color/backlogin"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:context=".DarEnAdopcionActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/blancoClaor">
+        android:layout_height="wrap_content">
 
         <Button
             android:id="@+id/btnAtras"
@@ -36,12 +37,13 @@
 
         <ImageView
             android:id="@+id/imagAnimal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="200dp"
+            android:layout_height="220dp"
             android:layout_marginVertical="30dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtTitulo" />
+            app:layout_constraintTop_toBottomOf="@+id/txtTitulo"
+            app:srcCompat="@drawable/lobo"/>
 
         <Button
             android:id="@+id/btnImagen"
@@ -50,6 +52,7 @@
             android:gravity="center"
             android:text="@string/a_adir_imagen"
             android:backgroundTint="@color/buttons"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imagAnimal" />
@@ -97,6 +100,20 @@
             app:layout_constraintTop_toBottomOf="@+id/txtraza" />
 
         <EditText
+            android:id="@+id/txtpeso"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/shape"
+            android:hint="Peso"
+            android:inputType="number"
+            android:padding="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtsexo" />
+
+        <EditText
             android:id="@+id/txtedad"
             android:layout_width="match_parent"
             android:layout_height="48dp"
@@ -108,7 +125,7 @@
             android:padding="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtsexo" />
+            app:layout_constraintTop_toBottomOf="@+id/txtpeso" />
 
         <AutoCompleteTextView
             android:id="@+id/txtTamano"
@@ -147,7 +164,7 @@
             android:background="@drawable/shape"
             android:gravity="top"
             android:hint="Descripccion de la mascota"
-            android:inputType="date"
+            android:inputType="text"
             android:padding="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -166,8 +183,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Esta esterilizado?"
-                android:textSize="15dp"
+                android:text="@string/esta_esterilizado"
+                android:textSize="15sp"
                 android:textColor="@color/black" />
 
             <RadioGroup
@@ -201,6 +218,7 @@
             android:layout_weight="1"
             android:text="@string/guardar"
             android:backgroundTint="@color/buttons"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lnlRadio"
