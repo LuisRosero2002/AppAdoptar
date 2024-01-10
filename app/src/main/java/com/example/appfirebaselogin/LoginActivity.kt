@@ -57,14 +57,12 @@ class LoginActivity : AppCompatActivity() {
             val context: Context = this
 
             if (usuario.isNotEmpty() && contrasena.isNotEmpty()){
-
+                /*
                 CoroutineScope(Dispatchers.IO).launch {
                     val call = retrofitApi().create(RetrofitService::class.java)
                         .iniciarSesion(usuario, contrasena)
 
                     runOnUiThread() {
-                        Log.i("Form",call.muestraformulario.toString())
-                        Log.i("REg",call.registrado.toString())
 
                         if(call.registrado.toString() == "true"){
                             val builder = AlertDialog.Builder(context)
@@ -102,6 +100,12 @@ class LoginActivity : AppCompatActivity() {
 
                     }
                 }
+
+
+                 */
+
+                val intent = Intent(context, InfoActivity::class.java)
+                startActivity(intent)
             }
             else{
                 // Mostrar un AlertDialog si algún campo está vacío

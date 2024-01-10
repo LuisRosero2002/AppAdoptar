@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/btnAdoptar"
+        android:icon="@drawable/baseline_menu_book_24"
+        android:title="ADOPTAR"
+        />
+    <item
+        android:id="@+id/btnDarAdopcion"
+        android:icon="@drawable/baseline_control_point_24"
+        android:title="DAR EN ADOPCION"
+        />
+</menu>

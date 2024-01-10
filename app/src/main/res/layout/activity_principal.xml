@@ -1,70 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/card2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/purple_200"
-    android:orientation="vertical"
     tools:context=".PrincipalActivity">
-
-
-    <androidx.cardview.widget.CardView
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmetContainer"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="50"
-        app:cardCornerRadius="50dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginRight="15dp"
-        app:cardBackgroundColor="#FFFFFF"
-        app:cardElevation="2dp">
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:focusedByDefault="true" />
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/daradopcion"
-            android:scaleType="centerCrop" />
-
-        <Button
-            android:id="@+id/Btn1"
-            style="@style/ButtonStyle"
-            android:background="@drawable/botonovalo"
-            android:text="@string/dar_en_adopci_n" >
-        </Button>
-
-
-
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/navMenu"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="50"
-        app:cardCornerRadius="50dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginBottom="15dp"
-        app:cardBackgroundColor="#FFFFFF"
-        app:cardElevation="2dp">
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        app:menu="@menu/menuapp"
+        android:background="@color/backlogin"/>
 
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/adoptar"
-            android:scaleType="centerCrop" />
 
-        <Button
-            android:id="@+id/Btn2"
-            style="@style/ButtonStyle"
-            android:background="@drawable/botonovalo"
-            android:text="@string/adoptar" >
-        </Button>
-
-    </androidx.cardview.widget.CardView>
-
-</LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
