@@ -18,13 +18,13 @@
             android:name=".InfoActivity"
             android:exported="false" />
         <activity
+            android:name=".PrincipalActivity"
+            android:exported="false" />
+        <activity
             android:name=".DarEnAdopcionActivity"
             android:exported="false" />
         <activity
             android:name=".AdoptarActivity"
-            android:exported="false" />
-        <activity
-            android:name=".DarEnAdopcionActivity"
             android:exported="false" />
         <activity
             android:name=".RegistrarseActivity"

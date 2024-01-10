@@ -19,7 +19,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class PrincipalActivity : AppCompatActivity() {
 
-    lateinit var navigation :BottomNavigationView
+    private lateinit var navigation :BottomNavigationView
     private val bottomNavigationView =  BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.btnAdoptar -> {

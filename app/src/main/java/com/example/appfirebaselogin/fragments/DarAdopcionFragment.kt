@@ -20,11 +20,22 @@ import android.widget.RadioGroup
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
+import com.example.appfirebaselogin.DarEnAdopcionActivity
+import com.example.appfirebaselogin.Data.modelos.Perro
 import com.example.appfirebaselogin.Data.modelos.RetrofitService
 import com.example.appfirebaselogin.PrincipalActivity
 import com.example.appfirebaselogin.R
+import com.google.gson.Gson
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import okhttp3.MediaType
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -48,11 +59,16 @@ class DarAdopcionFragment : Fragment() {
         }
 
     }
+
     lateinit var btnImage: Button
     lateinit var imagen: ImageView
-    var razaSeleccionada:String = ""
-    var tamanoSeleccionado:String = ""
-    var sexoSeleccionado:String = ""
+    private var razaSeleccionada: String = ""
+    private var tamanoSeleccionado: String = ""
+    private var sexoSeleccionado: String = ""
+    private var esterilizado: String = ""
+    private var date: String = ""
+    private var peso: Double = 0.0
+    private lateinit var file: File
 
     private lateinit var txtDate: EditText
     private val calendar: Calendar = Calendar.getInstance()
@@ -74,73 +90,220 @@ class DarAdopcionFragment : Fragment() {
         val root = inflater.inflate(R.layout.fragment_dar_adopcion, container, false)
 
         val btnEnviar = root.findViewById<Button>(R.id.btnguardar)
-        val name = (root.findViewById<EditText>(R.id.txtname)).text.toString()
+        val txtname = root.findViewById<EditText>(R.id.txtname)
+        val txtedad = root.findViewById<EditText>(R.id.txtedad)
         val autoCompleteTextView = root.findViewById<AutoCompleteTextView>(R.id.txtraza)
         val sexo = root.findViewById<AutoCompleteTextView>(R.id.txtsexo)
-        val edad = (root.findViewById<EditText>(R.id.txtedad)).text.toString()
         val tamano = root.findViewById<AutoCompleteTextView>(R.id.txtTamano)
+        val txtpeso = root.findViewById<EditText>(R.id.txtpeso)
         val radioGroup = root.findViewById<RadioGroup>(R.id.radioGroup)
-        val radioButtonId = radioGroup.checkedRadioButtonId
-
         txtDate = (root.findViewById(R.id.txtDate))
+        val txtdescripcion = root.findViewById<EditText>(R.id.txtdescripcion)
+
         btnImage = root.findViewById(R.id.btnImagen)
         imagen = root.findViewById(R.id.imagAnimal)
-
-        if (radioButtonId != -1) {
-
-            val radioButton = root.findViewById<RadioButton>(radioButtonId)
-            val esterilizado = radioButton.text.toString()
-
-        } else {
-
-
+        btnImage.setOnClickListener {
+            ///llamamos a pickmedia
+            pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
         }
-
+        // obtener opciones para el AutoCompleteTextView con los datos del array
         val opcionesRaza = obtenerOpcionesRaza()
-        val adaptador = ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, opcionesRaza)
+        // Crear un adaptador para las opciones
+        val adaptador =
+            ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, opcionesRaza)
+
+// Configurar el AutoCompleteTextView con el adaptador para opciones de mascota
         autoCompleteTextView.setAdapter(adaptador)
 
+// Manejar la selección de elementos en el AutoCompleteTextView
         autoCompleteTextView.setOnItemClickListener { _, _, position, _ ->
+            // Obtener el valor seleccionado del adaptador
             razaSeleccionada = adaptador.getItem(position).toString()
         }
 
+        //////////////////////////////////////////opciones para sexo
+        // Definir opciones para el AutoCompleteTextView
         val opcion = arrayOf("Hembra", "Macho")
-        val adap = ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, opcion)
-        sexo.setAdapter(adap)
 
+        // Crear un adaptador para las opciones
+        val adap = ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, opcion)
+
+        // Configurar el AutoCompleteTextView con el adaptador
+        sexo.setAdapter(adap)
+        // Manejar la selección de elementos en el AutoCompleteTextView
         sexo.setOnItemClickListener { _, _, position, _ ->
+            // Obtener el valor seleccionado del adaptador
             sexoSeleccionado = adap.getItem(position).toString()
+
         }
 
+        /////////////////////////////////////OPCIONES TAMAÑO
+        // Definir opciones para el AutoCompleteTextView
         val opc = arrayOf("Grande", "Mediano", "Pequeño")
+
+        // Crear un adaptador para las opciones
         val Mostrar = ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, opc)
+
+        // Configurar el AutoCompleteTextView con el adaptador
         tamano.setAdapter(Mostrar)
 
+        // Manejar la selección de elementos en el AutoCompleteTextView
         tamano.setOnItemClickListener { _, _, position, _ ->
+            // Obtener el valor seleccionado del adaptador
             tamanoSeleccionado = Mostrar.getItem(position).toString()
+
         }
 
 
+        // Mostrar el DatePickerDialog cuando se hace clic en el EditText
         txtDate.setOnClickListener {
             showDatePickerDialog()
         }
 
-        btnImage.setOnClickListener {
-            pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
+        btnEnviar.setOnClickListener {
 
-        }
+            val name = txtname.text.toString()
+            val edad = txtedad.text.toString()
+            val pesoString = txtpeso.text.toString()
+            val descripcion = txtdescripcion.text.toString()
+            ///////obtener id del bton para la imagen y el id de el imageview
 
-        btnEnviar.setOnClickListener{
+            ////obtener el valor del radio buton selecionado
+            val radioButtonId = radioGroup.checkedRadioButtonId
 
-            if(name.isNotEmpty() or razaSeleccionada.isNotEmpty() or tamanoSeleccionado.isNotEmpty() or sexoSeleccionado.isNotEmpty() ){
+            if (radioButtonId != -1) {
+                val radioButton = root.findViewById<RadioButton>(radioButtonId)
+                esterilizado = radioButton.text.toString()
+            } else {
+                println("Ningún RadioButton seleccionado")
+            }
 
-            }else{
+
+            /* if (name.isNotEmpty() && razaSeleccionada.isNotEmpty() && tamanoSeleccionado.isNotEmpty() && sexoSeleccionado.isNotEmpty()
+                 && edad.isNotEmpty() && descripcion.isNotEmpty() && esterilizado.isNotEmpty() && pesoString.isNotEmpty() && date.isNotEmpty()) {*/
+            if (name.isNotEmpty()){
+                peso = pesoString.toDouble()
+
+                //val dateFormat = "dd/MM/yyyy"
+                //val simpleDateFormat = SimpleDateFormat(dateFormat, Locale.getDefault())
+                //val fecha: Date? = simpleDateFormat.parse(date)
+
+
+                // Convertir objeto Perro a JSON y convertirlo a RequestBody
+                val gson = Gson()
+                //val perroJson = gson.toJson(
+                val perro =
+                    Perro(
+                        id = 0,
+                        raza = razaSeleccionada,
+                        nombre = name,
+                        peso = peso,
+                        tamanio = 1.0,
+                        edad = edad,
+                        idgenero = 1,
+                        descripcion = descripcion,
+                        estaesterilizado = true,
+                        fecharegistro = null,
+                        image = ""
+                    )
+                // )
+                /// Crear parte (part) del objeto Perro para la solicitud multipart
+                //val perroRequestBody =
+                // RequestBody.create(MediaType.parse("application/json"), perroJson)
+                //val perroPart = MultipartBody.Part.createFormData("perro", null, perroRequestBody)
+
+                // Crear parte (part) de la imagen para la solicitud multipart
+                val requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file)
+                val body = MultipartBody.Part.createFormData("file", file.name, requestFile)
+
+
+
+                CoroutineScope(Dispatchers.IO).launch {
+                    try {
+                        // Hacer la llamada a la API usando Retrofit
+
+                        val response =
+                            DarEnAdopcionActivity.RetrofitClient.createService().registrarPerro(perro, body)
+
+                        withContext(Dispatchers.Main) {
+                            // Verificar el código de respuesta
+                            if (response.isSuccessful) {
+                                // Acceder al cuerpo de la respuesta
+                                val perroResponse: Perro? = response.body()
+
+                                // Verificar si el cuerpo de la respuesta no es nulo
+                                if (perroResponse != null) {
+                                    // Operaciones con el cuerpo de la respuesta
+                                    Log.i("idUSer", perroResponse.id.toString())
+                                    Log.i("Pass", perroResponse.nombre)
+                                    Log.i("User", perroResponse.peso.toString())
+
+                                    // Mostrar un AlertDialog si algún error ocurrio
+                                    val builder = AlertDialog.Builder(requireContext())
+                                    builder.setTitle("EXITO")
+                                    builder.setMessage("Datos De La Mascota Registrados")
+                                    builder.setIcon(R.drawable.verificacion)
+                                    builder.setPositiveButton("Aceptar") { dialog: DialogInterface, _ ->
+                                        dialog.dismiss() // Cierra el diálogo cuando se hace clic en el botón "Aceptar"
+                                    }
+
+                                    val dialog = builder.create()
+                                    dialog.show()
+                                } else {
+                                    // Mostrar un AlertDialog si algún error ocurrio
+                                    val builder = AlertDialog.Builder(requireContext())
+                                    builder.setTitle("A Ocurrido Un Error")
+                                    builder.setMessage("Por favor intenta de nuevo")
+                                    builder.setIcon(R.drawable.cancelar)
+                                    builder.setPositiveButton("Aceptar") { dialog: DialogInterface, _ ->
+                                        dialog.dismiss() // Cierra el diálogo cuando se hace clic en el botón "Aceptar"
+                                    }
+
+                                    val dialog = builder.create()
+                                    dialog.show()
+                                }
+                            } else {
+                                // Mostrar un AlertDialog si algún error ocurrio
+                                val builder = AlertDialog.Builder(requireContext())
+                                builder.setTitle("Error Al Registrar La Mascota")
+                                builder.setMessage("Por favor intenta de nuevo")
+                                builder.setIcon(R.drawable.cancelar)
+                                builder.setPositiveButton("Aceptar") { dialog: DialogInterface, _ ->
+                                    dialog.dismiss() // Cierra el diálogo cuando se hace clic en el botón "Aceptar"
+                                }
+
+                                val dialog = builder.create()
+                                dialog.show()
+                            }
+                        }
+                    } catch (e: Exception) {
+                        // Manejar errores de red u otros problemas
+                        e.printStackTrace()
+                        withContext(Dispatchers.Main) {
+                            // Mostrar un AlertDialog si algún error ocurrio
+                            val builder = AlertDialog.Builder(requireContext())
+                            builder.setTitle("Error")
+                            builder.setMessage("Por favor intenta de nuevo")
+                            builder.setIcon(R.drawable.cancelar)
+                            builder.setPositiveButton("Aceptar") { dialog: DialogInterface, _ ->
+                                dialog.dismiss() // Cierra el diálogo cuando se hace clic en el botón "Aceptar"
+                            }
+
+                            val dialog = builder.create()
+                            dialog.show()
+                        }
+                    }
+                }
+
+
+            } else {
+                // Mostrar un AlertDialog si algún error ocurrio
                 val builder = AlertDialog.Builder(requireContext())
                 builder.setTitle("Error Campos Vacios")
                 builder.setMessage("Por favor, Verifica de nuevo")
                 builder.setIcon(R.drawable.cancelar)
                 builder.setPositiveButton("Aceptar") { dialog: DialogInterface, _ ->
-                    dialog.dismiss()
+                    dialog.dismiss() // Cierra el diálogo cuando se hace clic en el botón "Aceptar"
                 }
 
                 val dialog = builder.create()
