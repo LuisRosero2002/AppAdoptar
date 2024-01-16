@@ -57,7 +57,6 @@ class LoginActivity : AppCompatActivity() {
             val context: Context = this
 
             if (usuario.isNotEmpty() && contrasena.isNotEmpty()){
-                /*
                 CoroutineScope(Dispatchers.IO).launch {
                     val call = retrofitApi().create(RetrofitService::class.java)
                         .iniciarSesion(usuario, contrasena)
@@ -72,7 +71,8 @@ class LoginActivity : AppCompatActivity() {
                             builder.setPositiveButton("Aceptar") { dialog: DialogInterface, _ ->
                                 dialog.dismiss() // Cierra el diálogo cuando se hace clic en el botón "Aceptar"
                                 if(call.muestraformulario.toString() == "true"){
-                                    Log.i("Hola",call.muestraformulario.toString())
+                                    val intent = Intent(context, InfoActivity::class.java)
+                                    startActivity(intent)
                                 }else{
                                     val intent = Intent(context, PrincipalActivity::class.java)
                                     startActivity(intent)
@@ -80,9 +80,6 @@ class LoginActivity : AppCompatActivity() {
                             }
                             val dialog = builder.create()
                             dialog.show()
-
-
-
 
                         }else{
                             val builder = AlertDialog.Builder(context)
@@ -102,10 +99,6 @@ class LoginActivity : AppCompatActivity() {
                 }
 
 
-                 */
-
-                val intent = Intent(context, InfoActivity::class.java)
-                startActivity(intent)
             }
             else{
                 // Mostrar un AlertDialog si algún campo está vacío
