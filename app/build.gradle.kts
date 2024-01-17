@@ -63,5 +63,5 @@ dependencies {
     implementation("androidx.activity:activity-ktx:1.7.1")
     implementation ("androidx.recyclerview:recyclerview:1.2.1")
     implementation ("androidx.recyclerview:recyclerview:1.2.1")
-
+    implementation ("com.squareup.picasso:picasso:2.71828")
 }
