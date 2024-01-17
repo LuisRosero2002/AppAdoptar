@@ -176,7 +176,6 @@ class DarEnAdopcionActivity : AppCompatActivity() {
                         idgenero = 1,
                         descripcion = descripcion,
                         estaesterilizado = true,
-                        fecharegistro = null,
                         image = ""
                     )
                // )
