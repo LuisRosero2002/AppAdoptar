@@ -20,6 +20,7 @@ import kotlinx.coroutines.launch
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
+import retrofit2.create
 
 class RegistrarseActivity : AppCompatActivity() {
 
@@ -86,6 +87,7 @@ class RegistrarseActivity : AppCompatActivity() {
                     )
 
                     CoroutineScope(Dispatchers.IO).launch {
+
                         val call = retrofitApi().create(RetrofitService::class.java)
                             .registrase(requestBody)
 
@@ -103,12 +105,13 @@ class RegistrarseActivity : AppCompatActivity() {
                                 builder.setIcon(R.drawable.verificacion)
                                 builder.setPositiveButton("Aceptar") { dialog: DialogInterface, _ ->
                                     dialog.dismiss() // Cierra el diálogo cuando se hace clic en el botón "Aceptar"
-                                    val intent = Intent(context, PrincipalActivity::class.java)
+                                    val intent = Intent(context, InfoActivity::class.java)
+                                    intent.putExtra("idusuario",call.id)
                                     startActivity(intent)
+
                                 }
                                 val dialog = builder.create()
                                 dialog.show()
-
 
                             }else{
                                 val builder = AlertDialog.Builder(context)

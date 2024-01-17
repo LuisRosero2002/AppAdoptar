@@ -24,7 +24,7 @@ import retrofit2.converter.scalars.ScalarsConverterFactory
 class LoginActivity : AppCompatActivity() {
     // Write a message to the database
     private lateinit var binding: ActivityLoginBinding
-    val urlBase = "https://gdg0gqfj-80.use2.devtunnels.ms//ApiPerrosMovil/api/"
+    private val urlBase = "https://gdg0gqfj-80.use2.devtunnels.ms//ApiPerrosMovil/api/"
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,7 +57,7 @@ class LoginActivity : AppCompatActivity() {
             val context: Context = this
 
             if (usuario.isNotEmpty() && contrasena.isNotEmpty()){
-                /*
+
                 CoroutineScope(Dispatchers.IO).launch {
                     val call = retrofitApi().create(RetrofitService::class.java)
                         .iniciarSesion(usuario, contrasena)
@@ -71,8 +71,11 @@ class LoginActivity : AppCompatActivity() {
                             builder.setIcon(R.drawable.verificacion)
                             builder.setPositiveButton("Aceptar") { dialog: DialogInterface, _ ->
                                 dialog.dismiss() // Cierra el diálogo cuando se hace clic en el botón "Aceptar"
-                                if(call.muestraformulario.toString() == "true"){
-                                    Log.i("Hola",call.muestraformulario.toString())
+                                if(call.muestraformulario){
+                                     Log.i("Hola",call.muestraformulario.toString())
+                                     val intent = Intent(context, InfoActivity::class.java)
+                                     intent.putExtra("idusuario",call.idusuario)
+                                     startActivity(intent)
                                 }else{
                                     val intent = Intent(context, PrincipalActivity::class.java)
                                     startActivity(intent)
@@ -80,9 +83,6 @@ class LoginActivity : AppCompatActivity() {
                             }
                             val dialog = builder.create()
                             dialog.show()
-
-
-
 
                         }else{
                             val builder = AlertDialog.Builder(context)
@@ -101,14 +101,8 @@ class LoginActivity : AppCompatActivity() {
                     }
                 }
 
-
-                 */
-
-                val intent = Intent(context, InfoActivity::class.java)
-                startActivity(intent)
             }
             else{
-                // Mostrar un AlertDialog si algún campo está vacío
                 val builder = AlertDialog.Builder(this)
                 builder.setTitle("Campos vacíos")
                 builder.setMessage("Por favor, completa todos los campos.")

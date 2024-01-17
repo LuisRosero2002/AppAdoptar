@@ -28,5 +28,13 @@ interface RetrofitService {
         @Part image: MultipartBody.Part
     ): Response<Perro>
 
+    @GET("Persona/GetPersona")
+    suspend fun getPersona(
+        @Query("idusuario") idusaurio: String,
+    ): Persona
+    @POST("Persona/PostPersona")
+    suspend fun postPersonaInfo(
+        @Body requestBody:Persona
+    ): Response<Persona>
 
 }

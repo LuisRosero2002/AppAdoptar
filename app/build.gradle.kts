@@ -48,7 +48,7 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("com.google.firebase:firebase-auth-ktx:22.3.0")
     implementation("com.google.firebase:firebase-database:20.3.0")
-    implementation ("androidx.cardview:cardview:1.0.0") // O utiliza una versión más reciente
+    implementation ("androidx.cardview:cardview:1.0.0")
     implementation ("com.google.code.gson:gson:2.8.9")
     implementation("com.android.support:support-annotations:28.0.0")
     testImplementation("junit:junit:4.13.2")
@@ -61,6 +61,7 @@ dependencies {
     implementation ("com.squareup.retrofit2:converter-scalars:2.9.0")
     implementation("androidx.fragment:fragment-ktx:1.6.2")
     implementation("androidx.activity:activity-ktx:1.7.1")
+    implementation ("androidx.recyclerview:recyclerview:1.2.1")
     implementation ("androidx.recyclerview:recyclerview:1.2.1")
 
 }

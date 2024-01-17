@@ -3,9 +3,6 @@ package com.example.appfirebaselogin.Data.modelos
 import com.google.gson.annotations.SerializedName
 
 data class Usuario(
-
-
-
     @SerializedName("username")
     val username:String,
 

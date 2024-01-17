@@ -25,7 +25,6 @@ data class Perro(
     @SerializedName("edad")
     val edad:String,
 
-
     @SerializedName("idgenero")
     val idgenero:Int,
 
