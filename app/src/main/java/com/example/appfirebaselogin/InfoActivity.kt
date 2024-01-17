@@ -77,6 +77,7 @@ class InfoActivity : AppCompatActivity() {
         val adaptadorCiudad =
             ArrayAdapter(this, android.R.layout.simple_spinner_item, opcionesCiudad)
         adaptadorCiudad.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinnerCiuadad.adapter = adaptadorCiudad
         spinnerCiuadad.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>?,
