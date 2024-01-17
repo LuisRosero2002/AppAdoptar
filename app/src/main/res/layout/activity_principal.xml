@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".PrincipalActivity">
+
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmetContainer"
         android:layout_width="match_parent"
@@ -15,6 +17,18 @@
         app:layout_constraintTop_toTopOf="parent"
         android:focusedByDefault="true" />
 
+    <!-- Agrega un ImageView en el centro -->
+    <ImageView
+        android:id="@+id/imagenCentral"
+        android:layout_width="match_parent"
+        android:layout_height="616dp"
+        android:layout_gravity="center"
+        android:src="@drawable/doger"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navMenu"
         android:layout_width="match_parent"
@@ -22,6 +36,5 @@
         android:layout_gravity="bottom"
         app:menu="@menu/menuapp"
         android:background="@color/backlogin"/>
-
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

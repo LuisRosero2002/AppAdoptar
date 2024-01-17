@@ -45,6 +45,15 @@ class PrincipalActivity : AppCompatActivity() {
                 }
                 return@OnNavigationItemSelectedListener true
             }
+            R.id.btnacerca ->{
+
+                supportFragmentManager.commit {
+                    setReorderingAllowed(true)
+                    replace<AcercadeFragment>(R.id.fragmetContainer)
+                }
+                return@OnNavigationItemSelectedListener true
+
+            }
             else -> false
         }
     }

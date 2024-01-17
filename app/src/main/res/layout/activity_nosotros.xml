@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/backlogin"
-    tools:context=".NosotrosActivity">
+    tools:context=".AcercadeFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -116,7 +116,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
-                app:srcCompat="@drawable/usuario" />
+                app:srcCompat="@drawable/dani" />
         </androidx.cardview.widget.CardView>
 
 

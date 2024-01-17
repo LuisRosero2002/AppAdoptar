@@ -10,4 +10,9 @@
         android:icon="@drawable/baseline_control_point_24"
         android:title="DAR EN ADOPCION"
         />
+    <item
+        android:id="@+id/btnacerca"
+        android:icon="@drawable/baseline_control_point_24"
+        android:title="ACERCA DE NOSOTROS"
+        />
 </menu>
