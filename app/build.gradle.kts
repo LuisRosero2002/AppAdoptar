@@ -55,13 +55,13 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     implementation(platform("com.google.firebase:firebase-bom:32.3.1"))
-    implementation ("com.google.android.material:material:1.5.0")
+    implementation ("com.google.android.material:material:1.11.0")
     implementation("androidx.core:core-splashscreen:1.0.1")
-    implementation ("androidx.databinding:databinding-runtime:7.0.0")
+    implementation ("androidx.databinding:databinding-runtime:8.2.1")
     implementation ("com.squareup.retrofit2:converter-scalars:2.9.0")
     implementation("androidx.fragment:fragment-ktx:1.6.2")
-    implementation("androidx.activity:activity-ktx:1.7.1")
-    implementation ("androidx.recyclerview:recyclerview:1.2.1")
-    implementation ("androidx.recyclerview:recyclerview:1.2.1")
+    implementation("androidx.activity:activity-ktx:1.8.2")
+    implementation ("androidx.recyclerview:recyclerview:1.3.2")
+    implementation ("androidx.recyclerview:recyclerview:1.3.2")
 
 }
