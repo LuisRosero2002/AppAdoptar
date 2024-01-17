@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName
 data class Persona(
 
     @SerializedName("id")
-    val id: Int = 6,
+    val id: Int = 20,
 
     @SerializedName("idtipoidentificacion")
     val idtipoidentificacion: Int,

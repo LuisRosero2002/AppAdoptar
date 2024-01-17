@@ -45,7 +45,6 @@ class InfoActivity : AppCompatActivity() {
 
         var sexo: String? = null
         val spinner: Spinner = findViewById(R.id.sTidentificacion)
-        val spinnerCiuadad: Spinner = findViewById(R.id.spCiudad)
         val intent = intent
         val idusuario = intent.getStringExtra("idusuario")
 
@@ -73,48 +72,25 @@ class InfoActivity : AppCompatActivity() {
             }
         })
 
-        val opcionesCiudad = arrayOf("Pasto", "Ipiles", "Tuquerres")
-        val adaptadorCiudad =
-            ArrayAdapter(this, android.R.layout.simple_spinner_item, opcionesCiudad)
-        adaptadorCiudad.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spinnerCiuadad.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-                opcionSeleccionadaCiudad = opcionesCiudad[position]
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-            }
-        })
-
-        val radioGroup = findViewById<RadioGroup>(R.id.radioGroupInfo)
-        val radioButtonId = radioGroup.checkedRadioButtonId
-
-        if (radioButtonId != -1) {
-            val radioButton = findViewById<RadioButton>(radioButtonId)
-            sexo = radioButton.text.toString()
-
-        } else {
-
-
-        }
-
+        val txtname1 = findViewById<EditText>(R.id.etNombreP)
+        val txtname2 = findViewById<EditText>(R.id.etNombreS)
+        val txtapp1 = findViewById<EditText>(R.id.etApellidoP)
+        val txtapp2 = findViewById<EditText>(R.id.etApellidoS)
+        val txtidenti = findViewById<EditText>(R.id.etTnumeroidenti)
+        val txtdir = findViewById<EditText>(R.id.etDir)
 
         binding.btnGuardar.setOnClickListener {
 
-            val nombreP = (findViewById<EditText>(R.id.etNombreP)).text.toString()
-            val nombreS = (findViewById<EditText>(R.id.etNombreS)).text.toString()
-            val apellidoP = (findViewById<EditText>(R.id.etApellidoP)).text.toString()
-            val apellidoS = (findViewById<EditText>(R.id.etApellidoS)).text.toString()
+            val nombreP = txtname1.text.toString()
+            val nombreS = txtname2.text.toString()
+            val apellidoP = txtapp1.text.toString()
+            val apellidoS = txtapp2.text.toString()
             val tipoIdenti = opcionSeleccionadaTIdenti.toString()
-            val nIdenti = (findViewById<EditText>(R.id.etTnumeroidenti)).text.toString()
-            val dirreccion = (findViewById<EditText>(R.id.etDir)).text.toString()
+            val nIdenti = txtidenti.text.toString()
+            val dirreccion = txtdir.text.toString()
 
-
+        if (nombreP.isNotEmpty() && nombreS.isNotEmpty() && apellidoP.isNotEmpty() && apellidoS.isNotEmpty() &&
+            tipoIdenti.isNotEmpty() && dirreccion.isNotEmpty() && nIdenti.isNotEmpty()){
             CoroutineScope(Dispatchers.IO).launch {
 
                 val dataInput = Persona(
@@ -166,6 +142,18 @@ class InfoActivity : AppCompatActivity() {
                 }
 
             }
+        }else{
+            val builder = AlertDialog.Builder(this@InfoActivity)
+            builder.setTitle("Error campos vacios !!!")
+            builder.setMessage("verifica de nuevo")
+            builder.setIcon(R.drawable.cancelar)
+            builder.setPositiveButton("Ok") { dialog: DialogInterface, _ ->
+                dialog.dismiss()
+            }
+            val dialog = builder.create()
+            dialog.show()
+
+             }
         }
     }
 
