@@ -5,7 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.appfirebaselogin.R
+import com.example.ciclapp.recyclerview.CustomAdapterPets
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
@@ -27,8 +30,13 @@ class AdoptarFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_adoptar, container, false)
+        val root = inflater.inflate(R.layout.fragment_adoptar, container, false)
+        val recyclerView = root.findViewById<RecyclerView>(R.id.idRecycler)
+
+        val adapter = CustomAdapterPets()
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        recyclerView.adapter = adapter
+        return root
     }
 
     companion object {

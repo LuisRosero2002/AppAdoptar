@@ -34,10 +34,6 @@ data class Perro(
     @SerializedName("estaesterilizado")
     val estaesterilizado:Boolean,
 
-
-    @SerializedName("fecharegistro")
-    val fecharegistro:Date?,
-
     @SerializedName("image")
     val image:String
 )
