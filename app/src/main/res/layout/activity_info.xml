@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".InfoActivity"
-    android:background="@color/blancoClaor">
+    android:background="@color/blancoClaor"
+    tools:context=".InfoActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".InfoActivity"
-        android:background="@color/blancoClaor">
+        android:background="@color/blancoClaor"
+        tools:context=".InfoActivity">
 
         <TextView
             android:id="@+id/txtTitulo"
@@ -23,10 +22,10 @@
             android:textColor="@color/black"
             android:textSize="20dp"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.1" />
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -41,26 +40,25 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
                 android:layout_weight="1"
-                android:orientation="vertical"
-                android:layout_marginRight="10dp">
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
-                    android:textColor="@color/black"
                     android:text="Primer Nombre"
-                    android:textStyle="bold"/>
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/etNombreP"
-                    android:padding="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Ingrese su nombre"
                     android:background="@drawable/shape"
-                    />
+                    android:hint="Ingrese su nombre"
+                    android:padding="10dp" />
 
             </LinearLayout>
 
@@ -68,25 +66,23 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:orientation="vertical"
-                >
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
-                    android:textColor="@color/black"
                     android:text="Segundo Nombre"
-                    android:textStyle="bold"/>
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/etNombreS"
-                    android:padding="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Ingrese su nombre"
                     android:background="@drawable/shape"
-                    />
+                    android:hint="Ingrese su nombre"
+                    android:padding="10dp" />
 
             </LinearLayout>
         </LinearLayout>
@@ -102,26 +98,25 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
                 android:layout_weight="1"
-                android:orientation="vertical"
-                android:layout_marginRight="10dp">
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
-                    android:textColor="@color/black"
                     android:text="Primer Apellido"
-                    android:textStyle="bold"/>
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/etApellidoP"
-                    android:padding="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Ingrese su Apellido"
                     android:background="@drawable/shape"
-                    />
+                    android:hint="Ingrese su Apellido"
+                    android:padding="10dp" />
 
             </LinearLayout>
 
@@ -129,25 +124,23 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:orientation="vertical"
-                >
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
-                    android:textColor="@color/black"
                     android:text="Segundo Apellido"
-                    android:textStyle="bold"/>
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/etApellidoS"
-                    android:padding="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Ingrese su Apellido"
                     android:background="@drawable/shape"
-                    />
+                    android:hint="Ingrese su Apellido"
+                    android:padding="10dp" />
 
             </LinearLayout>
         </LinearLayout>
@@ -163,26 +156,26 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
                 android:layout_weight="0.7"
-                android:orientation="vertical"
-                android:layout_marginRight="10dp">
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
-                    android:textColor="@color/black"
                     android:text="Tipo de Identifiacion"
-                    android:textStyle="bold"/>
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
 
 
                 <Spinner
                     android:id="@+id/sTidentificacion"
-                    android:padding="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/shape"
                     android:hint="Identifiacion"
-                    android:background="@drawable/shape"/>
+                    android:padding="10dp" />
 
 
             </LinearLayout>
@@ -191,80 +184,27 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:orientation="vertical"
-                >
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
-                    android:textColor="@color/black"
                     android:text="# de identificacion"
-                    android:textStyle="bold"/>
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/etTnumeroidenti"
-                    android:padding="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Ingrese su idetificacion"
                     android:background="@drawable/shape"
+                    android:hint="Ingrese su idetificacion"
                     android:inputType="number"
-                    />
+                    android:padding="10dp" />
 
             </LinearLayout>
         </LinearLayout>
-        <LinearLayout
-            android:id="@+id/row5"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="19dp"
-            android:layout_marginRight="19dp"
-            android:layout_marginTop="20dp"
-            android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/row3">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:text="Sexo"
-                android:textColor="@color/black"
-                android:textStyle="bold" />
-
-            <RadioGroup
-                android:id="@+id/radioGroupInfo"
-                android:layout_width="wrap_content"
-                android:layout_height="51dp"
-                android:padding="0dp"
-                android:orientation="horizontal">
-
-                <RadioButton
-                    android:id="@+id/radioButtonHombre"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="20dp"
-                    android:text="Hombre" />
-
-                <RadioButton
-                    android:id="@+id/radioButtonMujer"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="20dp"
-                    android:text="Mujer" />
-
-                <RadioButton
-                    android:id="@+id/radioButtonOtro"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-
-                    android:text="Otro" />
-            </RadioGroup>
-        </LinearLayout>
-
-
 
         <LinearLayout
             android:id="@+id/row7"
@@ -272,63 +212,32 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:padding="16dp"
-            app:layout_constraintTop_toBottomOf="@+id/row5">
+            app:layout_constraintTop_toBottomOf="@+id/row3">
+
+
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:orientation="vertical"
-                android:layout_marginRight="10dp"
-                >
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
+                    android:padding="6dp"
+                    android:text="Dirección"
                     android:textColor="@color/black"
-                    android:text="Ciudad"
-                    android:textStyle="bold"
-                    android:padding="6dp"/>
-
-                <Spinner
-                    android:id="@+id/spCiudad"
-                    android:padding="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Identifiacion"
-                    android:background="@drawable/shape"
-                    />
-
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                >
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:textColor="@color/black"
-                    android:text="Direccion"
-                    android:textStyle="bold"
-                    android:padding="6dp"/>
+                    android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/etDir"
-                    android:padding="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Ingrese su direccion"
                     android:background="@drawable/shape"
-                    />
-
+                    android:hint="Cra 45 #18a-26"
+                    android:padding="10dp" />
 
 
             </LinearLayout>
@@ -336,19 +245,18 @@
 
 
 
-
         <Button
             android:id="@+id/btnGuardar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="30dp"
             android:backgroundTint="@color/buttons"
             android:text="Guardar"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/row7"
-            android:layout_marginTop="25dp"
-            android:layout_marginBottom="30dp"/>
+            app:layout_constraintTop_toBottomOf="@+id/row7" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,63 +7,80 @@
     android:layout_height="match_parent"
     android:background="@color/backlogin"
     android:orientation="vertical"
+    android:weightSum="100"
     tools:context=".PrincipalActivity">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_margin="15dp"
         android:layout_weight="50"
-        app:cardCornerRadius="50dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginRight="15dp"
         app:cardBackgroundColor="#FFFFFF"
+        app:cardCornerRadius="50dp"
         app:cardElevation="2dp">
 
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/daradopcion"
-            android:scaleType="centerCrop" />
+            android:scaleType="centerCrop"
+            android:src="@drawable/daradopcion" />
+
+
 
         <Button
             android:id="@+id/Btn1"
-            style="@style/ButtonStyle"
-            android:background="@drawable/botonovalo"
-            android:text="@string/dar_en_adopci_n" >
-        </Button>
-
-
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_gravity="bottom|center_horizontal"
+            android:backgroundTint="@color/buttons"
+            android:text="@string/dar_en_adopci_n"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:cornerRadius="?attr/listPreferredItemPaddingEnd" />
 
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_margin="15dp"
         android:layout_weight="50"
-        app:cardCornerRadius="50dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginBottom="15dp"
         app:cardBackgroundColor="#FFFFFF"
+        app:cardCornerRadius="50dp"
         app:cardElevation="2dp">
 
         <ImageView
             android:id="@+id/imageView2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/adoptar"
-            android:scaleType="centerCrop" />
+            android:scaleType="centerCrop"
+            android:src="@drawable/adoptar" />
+
 
         <Button
             android:id="@+id/Btn2"
-            style="@style/ButtonStyle"
-            android:background="@drawable/botonovalo"
-            android:text="@string/adoptar" >
-        </Button>
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_gravity="bottom|center_horizontal"
+            android:backgroundTint="@color/buttons"
+            android:text="@string/adoptar"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:cornerRadius="?attr/listPreferredItemPaddingEnd" />
 
     </androidx.cardview.widget.CardView>
+
+    <Button
+        android:id="@+id/btnIngresar"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:backgroundTint="@color/buttons"
+        android:text="Acerca De Nosotros"
+        android:textSize="20sp"
+        android:textColor="@color/white"
+        app:cornerRadius="?attr/listPreferredItemPaddingEnd"
+        android:layout_marginBottom="20sp"/>
 
 </LinearLayout>

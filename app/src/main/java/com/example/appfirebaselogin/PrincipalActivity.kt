@@ -31,6 +31,7 @@ class PrincipalActivity : AppCompatActivity() {
 
         val adopcion = findViewById<Button>(R.id.Btn1)//dar en adopcion
         val adoptar = findViewById<Button>(R.id.Btn2)//adoptar
+        val acrcade = findViewById<Button>(R.id.btnIngresar)//adoptar
 
         adopcion.setOnClickListener() {
             val intent = Intent(this, DarEnAdopcionActivity::class.java)
@@ -38,6 +39,11 @@ class PrincipalActivity : AppCompatActivity() {
         }
         adoptar.setOnClickListener() {
             val intent = Intent(this, AdoptarActivity::class.java)
+            startActivity(intent)
+        }
+
+        acrcade.setOnClickListener() {
+            val intent = Intent(this, NosotrosActivity::class.java)
             startActivity(intent)
         }
 
