@@ -25,9 +25,9 @@ import retrofit2.converter.scalars.ScalarsConverterFactory
 class CustomAdapterPets():RecyclerView.Adapter<CustomAdapterPets.ViewHolder>() {
 
     private val urlBase = "https://gdg0gqfj-80.use2.devtunnels.ms//ApiPerrosMovil/api/"
-    private val datos: List<Perro> = runBlocking {
-        consultarMascotas()
-    }
+    //private val datos: List<Perro> = runBlocking {
+        //consultarMascotas()
+    //}
     private val gson = Gson()
     private val itemType = object : TypeToken<List<Perro>>() {}.type
     private val itemsMascotas: List<Perro> = gson.fromJson("json", itemType)
@@ -36,11 +36,11 @@ class CustomAdapterPets():RecyclerView.Adapter<CustomAdapterPets.ViewHolder>() {
         return ViewHolder(v)
     }
     override fun onBindViewHolder(viewHolder: ViewHolder, i: Int) {
-        val currentItem = datos[i]
+        /*val currentItem = datos[i]
         viewHolder.itemNombre.text = currentItem.nombre
         viewHolder.itemRaza.text = currentItem.raza
         viewHolder.itemEdad.text = currentItem.edad
-        viewHolder.itemEsterilizado.text = if (currentItem.estaesterilizado) "SI" else "NO"
+        viewHolder.itemEsterilizado.text = if (currentItem.estaesterilizado) "SI" else "NO"*/
     }
     override fun getItemCount(): Int {
         return itemsMascotas.size
@@ -60,13 +60,13 @@ class CustomAdapterPets():RecyclerView.Adapter<CustomAdapterPets.ViewHolder>() {
 
     }
 
-    private suspend fun consultarMascotas(): List<Perro> {
+    /*private suspend fun consultarMascotas(): List<Perro> {
         return CoroutineScope(Dispatchers.IO).async {
             val response = RetrofitClient.createService().getPerros()
-            return@async response.body() ?: emptyList() // Si response.body() es nulo, devuelve una lista vacía
+            //return@async response.body() ?: emptyList() // Si response.body() es nulo, devuelve una lista vacía
         }.await()
     }
-
+*/
     object RetrofitClient {
         private const val BASE_URL =
             "https://gdg0gqfj-80.use2.devtunnels.ms//ApiPerrosMovil/api/"

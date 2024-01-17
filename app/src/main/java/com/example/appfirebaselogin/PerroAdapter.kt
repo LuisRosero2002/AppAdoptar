@@ -18,7 +18,7 @@ class PerroAdapter(private var listaPokemones:List<PerroResult>): RecyclerView.A
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType:Int):PerroViewHolder {
         val layout= LayoutInflater.from(parent.context)
-        return PerroViewHolder(layout.inflate(R.layout.item_pokemon,parent,false))
+        return PerroViewHolder(layout.inflate(R.layout.item_perro,parent,false))
     }
 
 

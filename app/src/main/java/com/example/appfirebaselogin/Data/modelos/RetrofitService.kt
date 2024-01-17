@@ -36,6 +36,6 @@ interface RetrofitService {
     ): Response<Persona>
 
     @GET("Perro/GetPerro")
-    suspend fun getPerros(): Response<List<Perro>>
+    suspend fun getPerros(): ListaPerro
 
 }

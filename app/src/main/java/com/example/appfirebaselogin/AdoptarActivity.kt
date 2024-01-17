@@ -8,8 +8,10 @@ import com.example.appfirebaselogin.Data.modelos.RetrofitService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+
 
 class AdoptarActivity : AppCompatActivity() {
 
@@ -18,18 +20,21 @@ class AdoptarActivity : AppCompatActivity() {
         private var listaPokemones=mutableListOf<PerroResult>()
         override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
-            setContentView(R.layout.activity_adoptar);
+            setContentView(R.layout.activity_adoptar) // Asegúrate de tener el nombre de tu diseño correcto
 
             initRecycle()
             consultarTodos()
+
 
 
         }
 
 
         private fun initRecycle(){
-            adapter=PerroAdapter(listaPokemones)
-
+            adapter = PerroAdapter(listaPokemones)
+            val recyclerView: RecyclerView = findViewById(R.id.lista) // Reemplaza "lista" con el ID de tu RecyclerView en el diseño
+            recyclerView.layoutManager = GridLayoutManager(this, 1)
+            recyclerView.adapter = adapter
         }
 
 
@@ -44,23 +49,27 @@ class AdoptarActivity : AppCompatActivity() {
         private fun consultarTodos(){
             //este consumo a la api lo hago en un hilo segundo plano por eso es IO, se utiliza corrutinas
             CoroutineScope(Dispatchers.IO).launch {
+                try {
+                    val respuesta = getRetrofit().create(RetrofitService::class.java).getPerros()
+                    val pokemones = respuesta
 
-                val respuesta=getRetrofit().create(RetrofitService::class.java).getPerros()
-                val pokemones=respuesta
-                runOnUiThread(){
-                    var lista:List<PerroResult> = emptyList()
-                    pokemones?.results?.let{ pokemonlista->
-                        lista = pokemonlista.map{perro->
-                            PerroResult(it, perro)
+                    withContext(Dispatchers.Main) {
+                        var lista: List<PerroResult> = emptyList()
+                        lista = pokemones.map {
+                            PerroResult(
+                                it.id, it.raza, it.nombre, it.peso, it.tamanio, it.edad, it.idgenero,
+                                it.descripcion, it.estaesterilizado, it.image
+                            )
                         }
+
+                        listaPokemones.clear()
+                        listaPokemones.addAll(lista)
+                        adapter.notifyDataSetChanged()
                     }
 
-                    listaPokemones.clear()
-
-                    listaPokemones.addAll(lista)
-
-                    adapter.notifyDataSetChanged()
-
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                    // Manejar el error, mostrar un mensaje al usuario, etc.
                 }
 
             }
