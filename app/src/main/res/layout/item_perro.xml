@@ -22,8 +22,8 @@
 
     <LinearLayout
         android:id="@+id/contenidoDerecha"
-        android:layout_width="94dp"
-        android:layout_height="42dp"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -37,6 +37,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Nombre"
+            android:textColor="@color/black"
             tools:layout_editor_absoluteX="157dp"
             tools:layout_editor_absoluteY="25dp"
             android:layout_marginBottom="5dp"
@@ -46,22 +47,36 @@
             android:id="@+id/nombre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/purple_200"
             android:text="Descripción" />
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/boton"
-        android:layout_width="100dp"
-        android:layout_height="59dp"
-        android:layout_marginTop="8dp"
-        android:backgroundTint="@color/buttons"
-        android:text="Adoptar"
-        android:textColor="@color/white"
-        android:textSize="10sp"
-        app:cornerRadius="?attr/listPreferredItemPaddingEnd"
-        app:layout_constraintStart_toStartOf="@+id/contenidoDerecha"
-        app:layout_constraintTop_toBottomOf="@+id/contenidoDerecha"
-        app:layout_constraintVertical_bias="0.0" />
+    <LinearLayout
+        android:id="@+id/contenidoboton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/image"
+        app:layout_constraintTop_toBottomOf="@+id/contenidoDerecha">
+
+        <Button
+            android:id="@+id/boton"
+            android:layout_width="100dp"
+            android:layout_height="59dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="@color/buttons"
+            android:text="Adoptar"
+            android:textColor="@color/white"
+            android:textSize="10sp"
+            app:cornerRadius="?attr/listPreferredItemPaddingEnd"
+            app:layout_constraintVertical_bias="0.0" />
+
+    </LinearLayout>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
