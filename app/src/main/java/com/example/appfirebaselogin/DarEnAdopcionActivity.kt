@@ -175,19 +175,9 @@ class DarEnAdopcionActivity : AppCompatActivity() {
                         edad = edad,
                         idgenero = 1,
                         descripcion = descripcion,
-                        estaesterilizado = true,
+                        estaesterilizado = if(esterilizado=="true"){true}else{false},
                         image = ""
                     )
-               // )
-                /// Crear parte (part) del objeto Perro para la solicitud multipart
-                //val perroRequestBody =
-                   // RequestBody.create(MediaType.parse("application/json"), perroJson)
-                //val perroPart = MultipartBody.Part.createFormData("perro", null, perroRequestBody)
-
-                // Crear parte (part) de la imagen para la solicitud multipart
-                val requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file)
-                val body = MultipartBody.Part.createFormData("file", file.name, requestFile)
-
 
 
                 CoroutineScope(Dispatchers.IO).launch {
@@ -195,7 +185,7 @@ class DarEnAdopcionActivity : AppCompatActivity() {
                         // Hacer la llamada a la API usando Retrofit
 
                         val response =
-                            RetrofitClient.createService().registrarPerro(perro, body)
+                            RetrofitClient.createService().registrarPerro(perro)
 
                         withContext(Dispatchers.Main) {
                             // Verificar el código de respuesta
@@ -205,12 +195,6 @@ class DarEnAdopcionActivity : AppCompatActivity() {
 
                                 // Verificar si el cuerpo de la respuesta no es nulo
                                 if (perroResponse != null) {
-                                    // Operaciones con el cuerpo de la respuesta
-                                    Log.i("idUSer", perroResponse.id.toString())
-                                    Log.i("Pass", perroResponse.nombre)
-                                    Log.i("User", perroResponse.peso.toString())
-
-                                    // Mostrar un AlertDialog si algún error ocurrio
                                     val builder = AlertDialog.Builder(this@DarEnAdopcionActivity)
                                     builder.setTitle("EXITO")
                                     builder.setMessage("Datos De La Mascota Registrados")

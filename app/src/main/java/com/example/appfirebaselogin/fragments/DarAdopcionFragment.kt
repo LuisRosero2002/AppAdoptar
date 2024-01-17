@@ -205,24 +205,13 @@ class DarAdopcionFragment : Fragment() {
                         estaesterilizado = true,
                         image = ""
                     )
-                // )
-                /// Crear parte (part) del objeto Perro para la solicitud multipart
-                //val perroRequestBody =
-                // RequestBody.create(MediaType.parse("application/json"), perroJson)
-                //val perroPart = MultipartBody.Part.createFormData("perro", null, perroRequestBody)
-
-                // Crear parte (part) de la imagen para la solicitud multipart
-                val requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file)
-                val body = MultipartBody.Part.createFormData("file", file.name, requestFile)
-
-
 
                 CoroutineScope(Dispatchers.IO).launch {
                     try {
                         // Hacer la llamada a la API usando Retrofit
 
                         val response =
-                            DarEnAdopcionActivity.RetrofitClient.createService().registrarPerro(perro, body)
+                            DarEnAdopcionActivity.RetrofitClient.createService().registrarPerro(perro)
 
                         withContext(Dispatchers.Main) {
                             // Verificar el código de respuesta

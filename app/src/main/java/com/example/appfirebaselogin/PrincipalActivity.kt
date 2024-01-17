@@ -9,9 +9,6 @@ import android.widget.Button
 import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.add
-import androidx.fragment.app.commit
-import androidx.fragment.app.replace
 import com.example.appfirebaselogin.Data.modelos.Perro
 import com.example.appfirebaselogin.Data.modelos.RetrofitService
 import com.example.appfirebaselogin.fragments.AdoptarFragment
@@ -32,16 +29,17 @@ class PrincipalActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_principal)
 
-        val adopcion = findViewById<Button>(R.id.Btn)//dar en adopcion
+        val adopcion = findViewById<Button>(R.id.Btn1)//dar en adopcion
         val adoptar = findViewById<Button>(R.id.Btn2)//adoptar
 
-        adopcion.setOnClickListener(){
+        adopcion.setOnClickListener() {
             val intent = Intent(this, DarEnAdopcionActivity::class.java)
             startActivity(intent)
         }
-        adoptar.setOnClickListener(){
+        adoptar.setOnClickListener() {
             val intent = Intent(this, AdoptarActivity::class.java)
             startActivity(intent)
         }
 
     }
+}
