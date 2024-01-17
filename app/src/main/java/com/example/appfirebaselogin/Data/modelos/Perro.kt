@@ -25,7 +25,6 @@ data class Perro(
     @SerializedName("edad")
     val edad:String,
 
-
     @SerializedName("idgenero")
     val idgenero:Int,
 
@@ -34,10 +33,6 @@ data class Perro(
 
     @SerializedName("estaesterilizado")
     val estaesterilizado:Boolean,
-
-
-    @SerializedName("fecharegistro")
-    val fecharegistro:Date?,
 
     @SerializedName("image")
     val image:String

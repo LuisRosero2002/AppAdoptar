@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cardView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -8,48 +9,159 @@
     card_view:cardBackgroundColor="@color/color1"
     card_view:cardCornerRadius="20dp"
     card_view:cardMaxElevation="6dp"
-    card_view:contentPadding="4dp"
-    >
+    card_view:contentPadding="4dp">
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="16dp">
-        <ImageView
-            android:id="@+id/item_img"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginEnd="15dp"
-            android:layout_marginRight="15dp"
+
+        <LinearLayout
+            android:id="@+id/luno"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            card_view:layout_constraintTop_toTopOf="parent"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintEnd_toEndOf="parent">
+
+            <ImageView
+                android:id="@+id/item_img"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                 />
+
+            <TextView
+                android:id="@+id/tNombre"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Hola Mundo"
+                android:textColor="@color/white"
+                android:textSize="25dp"
+                android:textStyle="bold"
+                />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/ldos"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toBottomOf="@+id/luno">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Raza:"
+                android:gravity="center"
+                android:textSize="20dp"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:layout_margin="5dp"
+                android:padding="5dp"
+                />
+
+            <TextView
+                android:id="@+id/tRaza"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Ptbul"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:layout_margin="5dp"
+                android:padding="5dp"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/ltres"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toBottomOf="@+id/ldos">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Esterilizado:"
+                android:gravity="center"
+                android:textSize="20dp"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:layout_margin="5dp"
+                android:padding="5dp"
+                />
+
+            <TextView
+                android:id="@+id/tEsterilizado"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Si"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:layout_margin="5dp"
+                android:padding="5dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lcuatro"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toBottomOf="@+id/ltres">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Edad:"
+                android:gravity="center"
+                android:textSize="20dp"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:layout_margin="5dp"
+                android:padding="5dp"
+                />
+
+            <TextView
+                android:id="@+id/tEdad"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="5"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:layout_margin="5dp"
+                android:padding="5dp"/>
+        </LinearLayout>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ADOPTAR"
+            card_view:cornerRadius="10dp"
+            card_view:layout_constraintTop_toBottomOf="@id/lcuatro"
+            tools:layout_editor_absoluteX="16dp"
+            android:backgroundTint="@color/colorBotonAdoptar"
             />
 
-        <TextView
-            android:id="@+id/item_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toEndOf="@+id/item_img"
-            android:layout_toRightOf="@+id/item_img"
-            android:layout_alignParentTop="true"
-            android:text="Hola Mundo"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            android:textSize="25dp"/>
 
-        <TextView
-            android:id="@+id/item_detail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/item_title"
-            android:layout_toEndOf="@+id/item_img"
-            android:layout_toRightOf="@+id/item_img"
-            android:text="Detalles"
-            android:textColor="@color/white"
-            android:textStyle="bold" />
-
-
-    </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

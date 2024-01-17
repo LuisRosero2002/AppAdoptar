@@ -9,4 +9,7 @@ data class VerificarIngresoUsuario (
     @SerializedName("muestraformulario")
     val muestraformulario:Boolean,
 
+    @SerializedName("idusuario")
+    val  idusuario:String,
+
 )
