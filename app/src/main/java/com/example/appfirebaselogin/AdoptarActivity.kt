@@ -13,33 +13,23 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class AdoptarActivity : AppCompatActivity() {
 
-        private lateinit var binding:AdoptarActivity
+
         private lateinit var adapter:PerroAdapter
         private var listaPokemones=mutableListOf<PerroResult>()
         override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
+            setContentView(R.layout.activity_adoptar);
 
-            binding= AdoptarActivityBinding.inflate(layoutInflater)
-            setContentView(binding.root)
             initRecycle()
             consultarTodos()
 
 
-            binding.editTextSearch.addTextChangedListener {filtro->
-
-                var cambio=listaPokemones.filter { pokemon ->
-                    pokemon.nombre.contains(filtro.toString(), ignoreCase = true)
-                }
-
-                adapter.actualizarLista(cambio)
-            }
         }
 
 
         private fun initRecycle(){
             adapter=PerroAdapter(listaPokemones)
-            binding.lista.layoutManager= GridLayoutManager(this, 1)
-            binding.lista.adapter=adapter
+
         }
 
 
